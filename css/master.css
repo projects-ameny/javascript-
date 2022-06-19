@@ -1,10 +1,20 @@
 :root{
     --main-color: #FF9800;
 }
+* {
+    box-sizing: border-box;
+}
 
 body{
     font-family: 'Calligraffitti', cursive;
 font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    width :1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
 }
 /* ########### end settings box ########################### */
 
@@ -36,27 +46,33 @@ font-family: 'Open Sans', sans-serif;
 }
 
 .setting-box .option-box{
-    padding:20px;
+    padding:10px;
+    text-align: center;
+    background-color: #eee;
+    margin: 10px;
 }
 .setting-box .option-box h4{
     margin:0;
     color: #666;
+    font-size: 14px;
 }
 .setting-box .option-box .colors-list{
     list-style: none;
     text-align: center;
     padding: 0;
+    margin: 10px 0 0 ;
 }
 .setting-box .option-box .colors-list li{
-    width:20px;
-    height:20px;
+    width:24px;
+    height:24px;
     background-color: #333;
     border-radius: 50%;
     cursor: pointer;
-    opacity: .5;display: inline-block;
+   display: inline-block;
+    border: 3px solid #fff ; 
 }
 .setting-box .option-box .colors-list li.active{
-    opacity:1;
+    border-color: #fff;
 }
 
 .setting-box .option-box .colors-list li:first-child{
@@ -71,10 +87,25 @@ font-family: 'Open Sans', sans-serif;
 .setting-box .option-box .colors-list li:nth-child(4){
     background-color: #03a9f4;
 }
-.setting-box .option-box .colors-list li:nth-child(5){
+.setting-box .Random-background .colors-list li:nth-child(5){
     background-color: #4caf50;
 }
-
+.setting-box .Random-background .yes , .setting-box .option-box .no{
+width :50px;
+background-color: #FF9800;
+color: #fff;
+margin-top: 20px;
+display: inline-block;
+font-size: 12px;
+padding: 4px 10px;
+font-weight: bold;
+border-radius: 4px;
+opacity: .5;
+cursor: pointer;
+}
+.setting-box .Random-background span.active{
+    opacity: 1;
+}
 
 
 
@@ -126,14 +157,9 @@ text-decoration: none;
 
 
 }
-.header-area .links li a .active{
-    color: var(--main-color);
-    text-decoration: none;
-    transition: .3s;
-    
-    }
+
 .header-area .links li a:hover,
-.header-area .links li a :active {
+.header-area .links li a.active{
 color: var(--main-color);
 text-decoration: none;
 transition: .3s;
@@ -158,6 +184,269 @@ color: var(--main-color);
     line-height: 1.6;
     font-size: 20px;
     margin: 0;
+    
 }
 
 /* ########## end landing page ###########" */
+
+/* ############## start about-us ###########*/
+.abou-us{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display:flex;
+
+}
+.abou-us .info-box{
+    flex: 1;
+    padding: 30px;
+
+}
+.abou-us .info-box h2{
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin: 0 0 10px;
+
+}
+.abou-us .info-box p{
+line-height: 1.8;
+color: #767676;
+margin:0;
+}
+.abou-us .image-box{
+flex: 1 ;
+text-align: center;
+}
+.abou-us .image-box img{
+width: 250px;
+}
+
+/* ############## end about-us ###########*/
+/* ############## Start skills ###########*/
+.skill{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #eee;
+}
+.skill h2{
+    font-weight:bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin:0 0 50px;
+    text-align: center;
+}
+.skill .skill-box{
+    background-color: #fff;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 15px;
+
+}
+.skill .skill-box .skill-name{
+    font-weight: bold;
+    text-align: right;
+    width: 140px;
+    line-height: 30px;
+  }
+.skill .skill-box .skill-progress{
+    height:30px;
+    width: calc(100% - 110px);
+    background-color:#f6f6f6;
+    border-radius: 6px;
+    position:relative;
+    overflow: hidden;
+    margin-left: 15px;
+}
+.skill .skill-box .skill-progress span{
+  position:absolute;
+  left:0;
+  top:0;
+  width:0;
+  height:100%;
+  background-color: var(--main-color);
+  transition: all 5s;
+    
+}
+
+/* ############## end skills ###########*/
+
+/* ############## Start gallery###########*/
+.gallery{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.gallery h2{
+    font-weight: bold;
+    font-size: 30px;
+    color:var(--main-color);
+    margin:0 0 50px;
+    text-align: center;
+}
+.gallery .images-box{
+    text-align:center;
+}
+.gallery .images-box img{
+width:200px;
+padding: 3px;
+background-color: #f6f6f6;
+border: 1px solid #ccc;
+cursor: pointer;
+margin: 5px;
+}
+.popup-overlay{
+    position:fixed;
+    background-color:rgba(0,0,0,.7);
+    left:0;
+    top:0;
+    width:100%;
+    height: 100%;
+    z-index:1000;
+
+}
+
+
+.popup-box{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%, -50%);
+
+background-color: #fff;
+border:1px solid #ccc;
+padding:20px;
+z-index: 1001;
+
+}
+.popup-box h3{
+    font-weight: bold;
+    text-align:center;
+    margin: 0 0 20px;
+    color:var(--main-color);
+
+}
+.popup-box img{
+    max-width: 100%;
+}
+.close-button{
+    position:absolute;
+    top:-15px;
+    right:15px;
+    background-color: var(--main-color);
+width:40px;
+height:40px;
+line-height: 40px;
+text-align: center;
+color:#fff;
+font-weight: bold;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+cursor: pointer;
+border-radius: 50%;
+}
+
+/* ############## end gallery ###########*/
+/* ##############start timeline ###########*/
+.timeline{
+    padding-top: 50px;
+    padding-bottom:50px;
+    background-color:#EEE;
+}
+.timeline .timeline-content{
+    position:relative;
+    overflow: hidden;
+}
+.timeline .timeline-content::before{
+    content:'';
+    width:2px;
+    height:100%;
+    background-color: var(--main-color);
+    position:absolute;
+    left:50%;
+    margin-left: -1px;
+    top:0;
+}
+.timeline .timeline-content .year{
+    margin:20px auto;
+width:50px;
+background-color: var(--main-color);
+position:relative;
+z-index:2;
+border-radius: 4px;
+text-align: center;
+color:#fff;
+padding:2px 5px;
+font-weight: bold;
+}
+.timeline .timeline-content .left,.timeline .timeline-content .right{
+    width:calc(50% - 25px);
+    margin-bottom: 40px;
+    position: relative;
+}
+.timeline .timeline-content .left{
+    float: left;
+}
+.timeline .timeline-content .left::before{
+    right:-35px;
+}
+.timeline .timeline-content .left::before,.timeline .timeline-content .right::before{
+    content:'';
+    width:14px;
+    height:14px;
+    background-color:#fff;
+    border:3px solid var(--main-color);
+    position: absolute;
+    right:-35px;
+    border-radius: 50%;
+    top:20px
+}
+.timeline .timeline-content .right::before{
+    left:-35px;
+}
+.timeline .timeline-content .right{
+    float:right;
+}
+.timeline .timeline-content .content{
+
+    padding:20px;
+    background-color:  #fff;
+}
+.timeline .timeline-content .content h3{
+    font-weight: bold;
+    color:var(--main-color);
+    margin:0 0 10px;
+}
+.timeline .timeline-content .content p{
+    color:#666;
+    margin: 0 ;
+    line-height: 1.6;
+}
+.clearfix{
+    clear:both;
+}
+.timeline .timeline-content .right .content ::before{
+    content:'';
+    border-style: solid;
+    border-width:10px;
+    border-color:transparent  #fff transparent transparent ;
+    height:0;
+    width:0;
+    position:absolute;
+    left:-20px;
+    top:20px
+}
+
+.timeline .timeline-content .left .content ::before{
+    content:'';
+    border-style: solid;
+    border-width:10px;
+    border-color:transparent transparent transparent #fff;
+    height:0;
+    width:0;
+    position:absolute;
+    right:-20px;
+    top:20px
+}
+
+
+/* ############## end timeline ###########*/
+

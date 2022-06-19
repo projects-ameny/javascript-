@@ -1,3 +1,61 @@
+//check if color locale storage
+let mainColors = localStorage.getItem("color_option");
+
+
+console.log(mainColors);
+if (mainColors !== null){
+  console.log("l1",localStorage);
+    console.log("l2",localStorage.getItem("color_option")) 
+    
+    document.documentElement.style.setProperty('--main-color', mainColors)
+
+    document.querySelectorAll(".colors-list li").forEach(element =>{
+        element.classList.remove("active");
+
+           //add active class on element with data-color == local storage item
+           if(element.dataset.color === mainColors){
+            //add active class
+            element.classList.add("active");
+           }
+    });
+ 
+
+}
+
+//Random background option
+let backgroundOption = true;
+
+//variable to control the background interval
+let backgroundInterval;
+ //check if there is local storage random background item
+
+ let backgroundLocalItem = localStorage.getItem("background_option");
+ //check if Random background Local Storage is not empty
+
+ if(backgroundLocalItem !== null){
+   
+    if(backgroundLocalItem === true){
+        backgroundOption = true;
+    }else{
+        backgroundOption = false;
+    }
+    console.log("apres",backgroundLocalItem);
+ 
+
+ //remove active class from span 
+
+ document.querySelectorAll(".Random-background span").forEach(element => {
+element.classList.remove("active")
+ });
+
+
+ if(backgroundLocalItem === 'true'){
+    document.querySelector(".Random-background .yes").classList.add("active");
+ }else{
+    document.querySelector(".Random-background .no").classList.add("active");
+ }
+ }
+
 /* ############# start toggel ##################*/
 document.querySelector(".toggle-settings .fa-gear").onclick = function(){
     this.classList.toggle("fa-spin");
@@ -13,9 +71,44 @@ colorsLi.forEach(li => {
       
         //set color on root
         document.documentElement.style.setProperty('--main-color',e.target.dataset.color)
+ 
 
+        localStorage.setItem("color_option", e.target.dataset.color);
+        //remove Active from all childrens
+        e.target.parentElement.querySelectorAll(".active").forEach(element =>{
+            element.classList.remove("active");
+        });
+        e.target.classList.add("active")
+    });
+});
+
+
+//switch  Random background option
+const randombackgEl = document.querySelectorAll(".Random-background span");
+//loop on all span
+randombackgEl.forEach(span => {
+    //click span
+   span.addEventListener("click", (e) => {
+      
+     
+        //remove Active from all childrens
+        e.target.parentElement.querySelectorAll(".active").forEach(element =>{
+            element.classList.remove("active");
+        });
+        e.target.classList.add("active");
+        if(e.target.dataset.background === 'yes'){
+            backgroundOption = true;
+            randomizeImgs();
+            localStorage.setItem("background_option", true);
+
+        }else{
+            backgroundOption = false;
+            clearInterval(backgroundInterval);
+            localStorage.setItem("background_option", false);
+        }
     });
 })
+
 
 
 
@@ -29,12 +122,125 @@ let landingPage = document.querySelector(".landing-page");
 
 let imgsArray  = ["1.jpg" , "2.jpg" , "3.jpg" , "4.jpg" , "5.jpg"];
 /*  console.log(randomNumber); */
-setInterval(() => {
-    //get Random number
-    let randomNumber = Math.floor(Math.random() * imgsArray.length);
-    //change background image url
-landingPage.style.backgroundImage = 'url("imgs/' +imgsArray[randomNumber] +'")';
-    
-    console.log(randomNumber);
-}, 2000);
-/* ############# end landing ##################*/
+
+
+
+
+//function to random imgs
+function randomizeImgs(){
+    if(backgroundOption === true){
+
+        backgroundInterval = setInterval(() => {
+            //get Random number
+            let randomNumber = Math.floor(Math.random() * imgsArray.length);
+            //change background image url
+        landingPage.style.backgroundImage = 'url("imgs/' +imgsArray[randomNumber] +'")';
+            
+            console.log(randomNumber);
+        }, 1000);
+        /* ############# end landing ##################*/
+
+    }
+}
+randomizeImgs();
+
+
+ /* ############# start skill ##################*/ 
+let ourSkills = document.querySelector(".skill");
+window.onscroll = function (){
+    //skill offset top
+    let skillOffsetTop = ourSkills.skillOffsetTop;
+//outer height skills
+let skillsOuterHeight = ourSkills.offsetHeight;
+
+//window height
+let windowHeight = this.innerHeight;
+
+// window scrollTop
+let windowScrollTop = this.pageYOffset;
+
+
+if ( windowScrollTop > (skillsOuterHeight )){
+ let allskills = document.querySelectorAll(".skill .skill-box .skill-progress span");
+ allskills.forEach(skill => {
+    skill.style.width = skill.dataset.progress;
+ });
+}
+console.log("windowScrollTop", windowScrollTop);
+
+console.log("skillsOuterHeight", skillsOuterHeight);
+console.log("windowHeight", windowHeight);
+
+
+console.log("skillOffsetTop",skillOffsetTop);
+
+};
+/* ############# end skill ##################*/
+/* #############start gallery ##################*/
+
+//create popup the image
+let ourGallery = document.querySelectorAll(".gallery img");
+ourGallery.forEach(img => {
+    img.addEventListener('click', (e) => {
+        //create overlay Element
+        let overlay = document.createElement("div");
+        //add class overlay
+        overlay.className = 'popup-overlay';
+        document.body.appendChild(overlay);
+
+        //create the popup
+let popupBox = document.createElement("div");
+
+popupBox.className ="popup-box";
+
+if(img.alt !== null){
+    //create heading
+    let imgheading = document.createElement("h3");
+    //create text for heading 
+    let imgText = document.createTextNode(img.alt);
+    //append the heading to the popup box
+    imgheading.appendChild(imgText);
+    // append the heading to the popup box
+    popupBox.appendChild(imgheading);
+}
+
+
+//create the image
+let popupImage = document.createElement("img");
+
+//set image source
+popupImage.src = img.src;
+//add img to popup box
+popupBox.appendChild(popupImage);
+document.body.appendChild(popupBox);
+// create the close spab 
+let closeButton = document.createElement("span");
+let closebuttontext = document.createTextNode("x");
+//append text to close button 
+closeButton.appendChild(closebuttontext);
+//add close button to the popup box
+closeButton.className ='close-button';
+popupBox.appendChild(closeButton);
+});
+});
+document.addEventListener("click", function (e) {
+
+if(e.target.className == 'close-button'){
+    //remove the current popup
+    e.target.parentNode.remove()
+    //remove overlay
+    document.querySelector(".popup-overlay").remove();
+}
+
+
+
+})
+
+
+
+/* ############# end gallery ##################*/
+
+
+
+
+
