@@ -240,7 +240,18 @@ if(e.target.className == 'close-button'){
 
 /* ############# end gallery ##################*/
 
+// select all bullets
+const allBullets = document.querySelectorAll(".nav-bullets .bullet");
+console.log('test',allBullets)
 
+allBullets.forEach(bullet => {
+    bullet.addEventListener("click",(e) => {
 
+        document.querySelector(e.target.dataset.section).scrollIntoView({
+
+            behavior: 'smooth'
+        });
+    });  
+});
 
 
