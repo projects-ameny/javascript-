@@ -11,7 +11,6 @@ font-family: 'Open Sans', sans-serif;
 }
 
 .container{
-    width :1170px;
     padding-left: 15px;
     padding-right: 15px;
     margin: auto;
@@ -27,6 +26,7 @@ font-family: 'Open Sans', sans-serif;
     z-index : 1000;
     min-height: 100vh;
     transition: 0.3s;
+    border:1px solid #EEE;
 
 }
 .setting-box.open{
@@ -103,8 +103,37 @@ border-radius: 4px;
 opacity: .5;
 cursor: pointer;
 }
+.setting-box .bullets-option .yes , .setting-box .option-box .no{
+    width :50px;
+    background-color: #FF9800;
+    color: #fff;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 12px;
+    padding: 4px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    opacity: .5;
+    cursor: pointer;
+    }
 .setting-box .Random-background span.active{
     opacity: 1;
+}
+.setting-box .bullets-option span.active{
+    opacity: 1;
+    background-color: #FF9800;
+}
+.setting-box .reset-option{
+background-color: #f44336;
+border:none;
+margin:10px auto;
+width:178px;
+display:block;
+color:#fff;
+font-weight: bold;
+padding:10px;
+border-radius: 4px;
+cursor: pointer;
 }
 /* ########### end settings box ########################### */
 /* ###########start nav bullets ########################### */
@@ -175,6 +204,10 @@ cursor: pointer;
     top:0;
     z-index:1;
 }
+/* .landing-page .container{
+    
+   
+} */
 .header-area{
     position:relative;
     z-index: 2;
@@ -191,13 +224,13 @@ cursor: pointer;
     border-bottom: 1px solid var(--main-color)
 
 }
-.header-area .links{
-    list-style: none;
-    width: 100%;
+.header-area .links-container{
+    width:100%;
     text-align: right;
+}
+.header-area .links.open{
+    list-style: none;
     padding-left: 0;
-    padding-right: 20px;
-    font-size: 15px;
 }
 .header-area .links li{
     display:inline-block;
@@ -216,6 +249,35 @@ color: var(--main-color);
 text-decoration: none;
 transition: .3s;
 }
+.header-area .links-container .toggle-menu{
+    background: none;
+    border: none;
+    width:40px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: none;
+    position:relative;
+}
+
+.header-area .links-container .toggle-menu.menu-active::before{
+    content: '';
+    border-width: 11px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff85 transparent;
+    position: absolute;
+    bottom:-15px;
+    right:6px;
+    }
+.header-area  .links-container.toggle-menu:focus {
+outline: none;
+}
+.header-area  .links-container .toggle-menu span{
+    display: block;
+    background-color: #fff;
+    height:4px;
+    margin-bottom: 4px;
+
+}
 .introduction-text{
     position: absolute;
     left: 50%;
@@ -225,6 +287,7 @@ transition: .3s;
     color:#fff;
     text-align: center;
 }
+
 .introduction-text h1{
     font-size: 35px;
     margin: 0 0 12px
@@ -238,38 +301,110 @@ color: var(--main-color);
     margin: 0;
     
 }
+@media (max-width : 991px) {
+    .header-area  .links-container .links{
+        display: none;
+    }
+    .landing-page  .header-area .links-container .open {
+        background-color: #ffffff85;
+        padding: 10px;
+        display: block;
+        position: absolute;
+        left:0;
+        top:50px;
+        width:100%;
+        border-radius: 4px;
+        text-align: left;
+    }
+    .header-area  .links-container  .open  li{
+        display: block;
+        margin: 10px;
+    }
+    .header-area  .links-container .open li a{
+        color:var(--main-color);
+        font-weight: bold;
+
+    }
+    .header-area  .links-container .toggle-menu{
+        display: inline-block;
+    }
+    
+}
 
 /* ########## end landing page ###########" */
 
 /* ############## start about-us ###########*/
-.abou-us{
+.about-us{
     padding-top: 50px;
     padding-bottom: 50px;
     display:flex;
 
 }
-.abou-us .info-box{
+@media (max-width:767px){ /* smal devices*/
+    .timeline .timeline-content .left,
+.about-us .info-box{
+    padding: 0;
+}
+.about-us{
+    display: block;
+    text-align: center;
+}
+.introduction-text h1{
+  font-size: 26px;
+}
+.introduction-text p{
+    font-size: 18px;
+  }
+  .skill h2{
+   
+    font-size: 26px;
+ 
+}
+.skill .skill-box .skill-name{
+    width:100%;
+    margin-bottom: 15px;
+  }
+  .skill .skill-box{
+    display:block;
+  }
+  .timeline .timeline-content .left,
+  .timeline .timeline-content .right{
+      width:100%;
+      margin-bottom: 20px;
+  }
+  .timeline .timeline-content .left::before,
+  .timeline .timeline-content .right::before{
+      display:none;
+  }
+  .timeline .timeline-content .left .content::before,
+  .timeline .timeline-content .right .content::before{
+      display:none;
+  }
+    
+}
+
+.about-us .info-box{
     flex: 1;
     padding: 30px;
 
 }
-.abou-us .info-box h2{
+.about-us .info-box h2{
     font-weight: bold;
     font-size: 30px;
     color: var(--main-color);
     margin: 0 0 10px;
 
 }
-.abou-us .info-box p{
+.about-us .info-box p{
 line-height: 1.8;
 color: #767676;
 margin:0;
 }
-.abou-us .image-box{
+.about-us .image-box{
 flex: 1 ;
 text-align: center;
 }
-.abou-us .image-box img{
+.about-us .image-box img{
 width: 250px;
 }
 
@@ -326,6 +461,7 @@ width: 250px;
 .gallery{
     padding-top: 50px;
     padding-bottom: 50px;
+    text-align: center;
 }
 .gallery h2{
     font-weight: bold;
@@ -398,6 +534,7 @@ border-radius: 50%;
 
 /* ############## end gallery ###########*/
 /* ##############start timeline ###########*/
+
 .timeline{
     padding-top: 50px;
     padding-bottom:50px;
@@ -617,4 +754,115 @@ font-weight: bold;
 
 }
 /* ############## end testimonials ###########*/
+/* #############start contact us ############### */
+.contact{
+    min-height: 600px;
+    background-image:url('../imgs/map.png');
+    background-size:cover;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    position: relative;
+}
+.contact .overlay{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(255,255,255, .6);
+}
+.contact .container{
+    position: relative;
+    z-index: 2;
+}
+.contact h2{
+    font-weight: bold;
+    font-size:30px;
+    color: var(--main-color);
+    margin:0 0 60px;
+    text-align: center;
+}
+.contact form{
+    overflow: hidden;
+    max-width: 800px;
+    margin: auto;
+}
+.contact form .left{
+    float:left;
+    width:48%;
+}
+.contact form .right{
+    float:right;
+    width:48%;
+}
+.contact form input:not([type="submit"]), .contact form textarea{
+    display: block;
+    width: 100%;
+    padding:10px;
+    margin-bottom: 15px;
+    border:1px solid #ccc;
+    background-color: rgba(218, 218, 218, .19);
+}
+.contact form input:not([type="submit"]):focus, .contact form textarea:focus{
+    outline: 1px solid var(--main-color);
+}
+.contact form input{
+    height:40px;
 
+}
+
+.contact form textarea{
+    height:150px;
+}
+.contact form input[type="submit"]{
+    padding: 10px;
+    width:100%;
+    border-color:transparent;
+    background-color: var(--main-color);
+    cursor:pointer;
+    color:#fff;
+    
+}
+.contact form textarea:focus::-webkit-input-placeholder,.contact form input:not([type="submit"]):focus::-webkit-input-placeholder{
+    opacity: 0;
+    transition: .3s;
+}
+.contact form textarea:focus:-ms-input-placeholder,
+.contact form input:not([type="submit"]):focus:-ms-input-placeholder{
+    opacity: 0;
+    transition: .3s;
+}
+.contact form textarea:focus::placeholder{
+    opacity: 0;
+    transition: .3s;
+}
+/* ###########end contact-us #################*/
+/* start grid system*/
+@media (min-width:576px){ /* smal devices*/
+    .container{
+        max-width: 540px;
+    }
+    
+}
+@media (min-width:768px){ /* medium devices*/
+    .container{
+        max-width: 720px;
+    }
+    
+}
+@media (min-width:992px){ /* desktop devices*/
+    .container{
+        max-width: 960px;
+    }
+    
+}
+@media (min-width:1200px){ /* large screen devices*/
+    .container{
+        max-width: 1140px;
+    }
+    
+}
+
+
+
+/*end grid system
