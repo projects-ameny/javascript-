@@ -355,31 +355,10 @@ color: var(--main-color);
 .introduction-text p{
     font-size: 18px;
   }
-  .skill h2{
-   
-    font-size: 26px;
- 
-}
-.skill .skill-box .skill-name{
-    width:100%;
-    margin-bottom: 15px;
-  }
-  .skill .skill-box{
-    display:block;
-  }
-  .timeline .timeline-content .left,
-  .timeline .timeline-content .right{
-      width:100%;
-      margin-bottom: 20px;
-  }
-  .timeline .timeline-content .left::before,
-  .timeline .timeline-content .right::before{
-      display:none;
-  }
-  .timeline .timeline-content .left .content::before,
-  .timeline .timeline-content .right .content::before{
-      display:none;
-  }
+  .about-us .image-box img{
+display:contents;
+    }
+
     
 }
 
@@ -656,6 +635,34 @@ font-weight: bold;
     text-align: center;
     margin-bottom:40px;
 }
+@media (max-width:767px){ /* smal devices*/
+   .features .feat-box {
+        width: calc(100%/3);
+        float: left;
+        text-align: center;
+        margin-bottom:40px;
+    }
+    .features .feat-box h4{
+    font-size: 15px !important ;
+    margin: 15px 0 40px;
+    position: relative;;
+        margin:15px 0 40px;
+        position: relative;
+    }
+    .features h2{
+        font-weight: bold;
+        font-size: 20px;
+        color: var(--main-color);
+        margin: 0 0 60px;
+        text-align: center;
+    }
+    .features .feat-box p{
+        font-size: 13px !important;
+        margin:15px 0 40px;
+        position: relative;
+    }
+}
+ 
 .features .feat-box img{
     width: 96px;
 }
@@ -734,6 +741,17 @@ font-weight: bold;
     font-style: italic;
 
 }
+@media (max-width:767px){
+    .testimonials .ts-box > P{
+        font-size:13px !important;
+     }
+     .testimonials h2{
+    text-align: center;
+    font-size: 22px;
+
+
+     }
+    }
 .testimonials .ts-box .person-info{
     overflow: hidden;
 
@@ -782,6 +800,12 @@ font-weight: bold;
     margin:0 0 60px;
     text-align: center;
 }
+@media (max-width:767px){
+    .contact h2{
+        font-size:22px !important;
+     }
+   
+    }
 .contact form{
     overflow: hidden;
     max-width: 800px;
@@ -866,3 +890,11 @@ font-weight: bold;
 
 
 /*end grid system
+/*start footer*/
+.footer{
+    background-color: #333;
+    color:#eee;
+    padding:20px;
+    text-align: center;
+}
+/*end footer*/
